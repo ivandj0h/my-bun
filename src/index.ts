@@ -44,6 +44,12 @@ app.use(
   })
 );
 
+app.use("/", bearerAuth({
+  verifyToken: async(token, c) => {
+    return token === getCookie(c, "token");
+  },
+}))
+
 app.get("/index/movies", (c) => {
   return c.json({
     movies: [
