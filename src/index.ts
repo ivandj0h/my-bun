@@ -10,15 +10,12 @@ import { sign } from "hono/jwt";
 const app = new Hono()
 app.use(logger())
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
 
 // login
 app.post("/login", zValidator("json", schema), async (c) => {
   const { email, password } = await c.req.json();
 
-  if (password !== "qwery1234*") {
+  if (password !== Bun.env.PASS) {
     throw new HTTPException(401, { message: "Invalid credentials" });
   }
 
@@ -43,12 +40,6 @@ app.use(
     },
   })
 );
-
-app.use("/", bearerAuth({
-  verifyToken: async(token, c) => {
-    return token === getCookie(c, "token");
-  },
-}))
 
 app.get("/index/movies", (c) => {
   return c.json({

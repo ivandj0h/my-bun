@@ -17,3 +17,18 @@ bun run dev
 ```
 
 open <http://localhost:3000>
+
+## Captured
+
+### Login ( Failed )
+
+![Login Failed](./captured/login_fail.png)
+
+### Login ( Success )
+
+![Login Success](./captured/login_success.png)
+
+### Index
+
+![index](./captured/index.png)
+
